@@ -1,0 +1,121 @@
+{
+  "name": "Shorts Title Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        208
+      ],
+      "id": "c868d1ec-32e5-4c52-be5a-2a815f4172c1",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "PQ2NehobIV7JDTke",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Give me exactly 5 catchy YouTube Shorts titles about: {{ $json.idea }}. Return only the titles, one per line, no extra text",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        448,
+        0
+      ],
+      "id": "bb9a1fe4-c971-47fd-aa9e-ac0e825291e8",
+      "name": "Shorts title generator"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9,
+              "triggerAtMinute": 15
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a61812d0-76d7-4e9b-81d8-634744c8f66d",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { json: { idea: \"clipping yt videos\" } },\n  { json: { idea: \"roblox ui design for beginners\" } },\n  { json: { idea: \"n8n automation for small businesses\" } }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "462de14f-f73c-4925-85b8-43c3f4ea9635",
+      "name": "Idea Input"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Shorts title generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Idea Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Idea Input": {
+      "main": [
+        [
+          {
+            "node": "Shorts title generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "389e5a0d-693f-4854-814b-34b3be03fb76",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5fe449a17d172443e632d62a2fbd8ba47ed21b01e51ea99bb49d6e2096f55c37"
+  },
+  "nodeGroups": [],
+  "id": "DiPM8SU1vVw4Hfwp",
+  "tags": []
+}
