@@ -22,7 +22,7 @@ An n8n workflow that runs every day at 9:15 AM, takes a list of video ideas, and
 
 ## What I learned
 
-Setting up the Gemini credential was the hardest part, since the API key kept failing until I created a fresh key. I also learned that Schedule Triggers only run once the workflow is published, and I put my Code node’s JavaScript inside an Edit Fields node by mistake, which caused an error, not an Edit Fields node. Next time I'd add a CSV export so the titles are saved automatically.
+Setting up the Gemini credential was the hardest part, since the API key kept failing until I created a fresh key. I also learned that Schedule Triggers only run once the workflow is published, and I put my Code node’s JavaScript inside an Edit Fields node by mistake, which caused an error. Next time I'd add a CSV export so the titles are saved automatically.
 
 ## Next steps
 
